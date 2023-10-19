@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autuações por Excesso de Velocidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(fundo3.jpeg);
+
+        }
+        img{
+            position: absolute;
+            height: 110px;
+            width: 220px;
+            left: 37%;
+            top: 10%;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.817);
+            position: absolute;
+            left: 33%;
+            top: 30%;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 2px black outset;
+            border-radius: 20px;
+            -webkit-box-shadow:5px 8px 5px 10px rgba(0, 0, 0, 0.402);
+            box-shadow:5px 8px 5px 10px rgba(0, 0, 0, 0.504); 
+           
+        }
+        input{
+            height: 20px;
+            width: 100px;
+            border: 2px red solid;
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png">
+    <div class="container">
+        <h1>Autuações por Excesso de Velocidade</h1>
+        <label for="velocidadeMaxima">Velocidade Máxima Permitida (km/h):</label><br>
+        <input type="number" id="velocidadeMaxima" placeholder="Digite a velocidade máxima"><br><br>
+
+        <label for="velocidadeCarro">Velocidade do Carro (km/h):</label><br>
+        <input type="number" id="velocidadeCarro" placeholder="Digite a velocidade do carro"><br><br>
+
+        <label for="nomeCondutor">Nome do Condutor:</label><br>
+        <input type="text" id="nomeCondutor" placeholder="Digite o nome do condutor"><br><br>
+
+        <label for="numeroHabilitacao">Número da Habilitação:</label><br>
+        <input type="text" id="numeroHabilitacao" placeholder="Digite o número da habilitação"><br><br>
+
+        <button onclick="verificarVelocidade()">Verificar</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function verificarVelocidade() {
+            const velocidadeMaxima = parseFloat(document.getElementById("velocidadeMaxima").value);
+            const velocidadeCarro = parseFloat(document.getElementById("velocidadeCarro").value);
+            const excessoVelocidade = velocidadeCarro - velocidadeMaxima;
+            const nomeCondutor = document.getElementById("nomeCondutor").value;
+            const numeroHabilitacao = document.getElementById("numeroHabilitacao").value;
+
+            let mensagem = "";
+            let valorAutuacao = 0;
+            let pontuacao = 0;
+
+            if (excessoVelocidade <= 7) {
+                mensagem = "Advertência - Acima de 7 km/h.";
+            } else if (excessoVelocidade <= (0.2 * velocidadeMaxima)) {
+                mensagem = "Autuado. Infração Grave.";
+                valorAutuacao = 195.23; // Valor fictício da autuação para infração grave
+                pontuacao = 5; // Pontuação fictícia na carteira para infração grave
+            } else if (excessoVelocidade <= (0.5 * velocidadeMaxima)) {
+                mensagem = "Autuado. Infração Gravíssima.";
+                valorAutuacao = 880.41; // Valor fictício da autuação para infração gravíssima
+                pontuacao = 7; // Pontuação fictícia na carteira para infração gravíssima
+            } else {
+                mensagem = "Autuado. Infração Gravíssima. Penalidade de suspensão do direito de dirigir.";
+                valorAutuacao = 2930.17; // Valor fictício da autuação para penalidade de suspensão
+                pontuacao = 10; // Pontuação fictícia na carteira para penalidade de suspensão
+            }
+
+            if (nomeCondutor && numeroHabilitacao) {
+                mensagem += `<br>Nome do Condutor: ${nomeCondutor}`;
+                mensagem += `<br>Número da Habilitação: ${numeroHabilitacao}`;
+            } else {
+                mensagem += "<br>Informações do proprietário (pontuação na carteira).";
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                ${mensagem}<br>
+                Valor da Autuação: R$ ${valorAutuacao.toFixed(2)}<br>
+                Pontuação na Carteira: ${pontuacao} pontos
+            `;
+        }
+    </script>
+</body>
+</html>
