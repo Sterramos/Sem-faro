@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Autuação</title> 
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-image: url(fundo3.jpeg);
+
+        }
+        img{
+            position: absolute;
+            height: 110px;
+            width: 220px;
+            left: 37%;
+            top: 10%;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.817);
+            position: absolute;
+            left: 33%;
+            top: 30%;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 2px black outset;
+            border-radius: 20px;
+            -webkit-box-shadow:5px 8px 5px 10px rgba(0, 0, 0, 0.402);
+            box-shadow:5px 8px 5px 10px rgba(0, 0, 0, 0.504); 
+           
+        }
+        input{
+            height: 20px;
+            width: 100px;
+            border: 2px red solid;
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png">
+    <div class="container">
+    <h1>Formulário de Autuação</h1>
+    <form id="autuacao-form">
+        <label for="nome">Nome do Infrator:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+
+        <label for="placa">Placa do Veículo:</label><br>
+        <input type="text" id="placa" name="placa"><br>
+
+        <label for="infracao">Infração:</label><br>
+        <input type="text" id="infracao" name="infracao"><br>
+
+        <button type="button" id="imprimir">Imprimir Autuação</button>
+    </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
